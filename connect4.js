@@ -314,7 +314,7 @@ function gameReset() {
   
   // COMMENT: reset game state values
   gameStart = 0;
-  currPlayer = 1;
+  currPlayer = 2;
   timeOutput = 0;
   winner = false;
   timeUpdate.innerText = (timeOutput.toString());
