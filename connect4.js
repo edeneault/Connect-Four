@@ -114,7 +114,6 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  console.log("in findSpot");
   for (let y = HEIGHT - 1; y >= 0; y--) {
     if (!board[y][x]) {
       return y;
@@ -131,11 +130,9 @@ function placeInTable(y, x) {
   const pieceDiv = document.createElement('div');
   pieceDiv.classList.add("gamePiece", `p${currPlayer}`);
   pieceDiv.innerText = '*'
-  console.log(`${-50 * (y + 2)}px`);
  
   const pieceLoc = document.getElementById(`${y}-${x}`);
   pieceDiv.innerHTML = '<h1 class="star">☆</h1>';
-  console.log(pieceLoc.innerHTML);
   pieceLoc.append(pieceDiv);
 
 };
@@ -165,11 +162,10 @@ function endGame(msg) {
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
-  console.log(evt);
+
   if (winner) return;
   // COMMENT: get x from ID of clicked cell
   const x = +evt.target.id;
-  console.log(x);
   // COMMENT:get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
 
@@ -196,7 +192,6 @@ function handleClick(evt) {
 
   // COMMENT:  check if all cells in board are filled; if so call, call endGame
   if (board.every(row => row.every(cell => cell))) {
-    console.log('TIE');
     return endGame('Tie!');
   };
   // COMMENT: switch players -  easy condition check with ternary operator
@@ -247,7 +242,6 @@ function startGame() {
   startButton.addEventListener('click', function(event) {  
     if (gameStart === 0) {
       gameStart++;
-      console.log(gameStart);
       introDiv.remove();
       makeBoard();
       makeHtmlBoard();
@@ -265,7 +259,6 @@ function startGame() {
 // COMMENT: function to start timer
 const startTime = () => {
   let start = Date.now();
-  console.log("date: ", start)
   time = setInterval(function () {
     let delta = Date.now() - start;
     timeOutput = (Math.floor(delta / 1000)); // in seconds
