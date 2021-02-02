@@ -29,7 +29,7 @@ let longGame = JSON.parse(localStorage.getItem("long-game"));
 const WIDTH = 7; // Board Colunms
 const HEIGHT = 6; // Board Rows
 let timeOutput = 0; //timer initial value
-let currPlayer = 2; // active player: 1 or 2
+let currPlayer = 1; // active player: 1 or 2
 let board = []; // array of rows, each row is array of cells  (board[y][x])
 let winner = false; //set winner to false at game start
 let gameStart = 0; // variable used to prevent START button to be clickable once game starts
@@ -194,8 +194,7 @@ function handleClick(evt) {
   if (board.every(row => row.every(cell => cell))) {
     return endGame('Tie!');
   };
-  // COMMENT: switch players -  easy condition check with ternary operator
-  currPlayer = currPlayer === 1 ? 2 : 1;
+  
 
 }
 
@@ -232,6 +231,8 @@ function checkForWin() {
       }
     }
   }
+  // COMMENT: switch players -  easy condition check with ternary operator
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 // COMMENT: this function listens for a user "start Button" click to 
@@ -307,7 +308,7 @@ function gameReset() {
   
   // COMMENT: reset game state values
   gameStart = 0;
-  currPlayer = 2;
+  currPlayer = 1;
   timeOutput = 0;
   winner = false;
   timeUpdate.innerText = (timeOutput.toString());
